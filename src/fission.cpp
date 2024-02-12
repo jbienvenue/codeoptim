@@ -1,11 +1,9 @@
-#include <stdlib.h>
 #include "measure.h"
-#include <cstdio>
 
-#define MAXID 3
+const int MAXID = 3;
 using namespace std;
 
-void exp(int n, double* T, double* U, int id){
+void exp(int id, int n, double* T, double* U){
     switch(id){
         case 0:
             for(int i=0; i<n; i++){
@@ -39,9 +37,9 @@ int main(){
     double* U = (double*)calloc(n, sizeof(double));
     //record
     for(int id=0; id<MAXID; id++){
-        mesure tm_start=start();
-        for(int k=0; k<repeat; k++){
-            exp(n, T, U, id);
+        mesure tm_start = start();
+        for(int k = 0; k<repeat; k++){
+            exp(id, n, T, U);
         }
         printf("%d\n", stop(tm_start));
     }

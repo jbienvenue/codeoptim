@@ -1,5 +1,5 @@
 #include "measure.h"
-const int MAXID = 4;
+const int MAXID = 5;
 
 void exp(int idCode, int n, int* T, int* U){
   switch(idCode){
@@ -48,6 +48,13 @@ void exp(int idCode, int n, int* T, int* U){
         T[i] += 50;
       }
       for(int i=0; i<n; i++){
+        U[i] += 100;
+      }
+      break;
+    case 4:
+      //fusioning the 2 loops
+      for(int i=0; i<n; i++){
+        T[i] += 50;
         U[i] += 100;
       }
       break;

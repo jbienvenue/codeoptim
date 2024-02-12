@@ -13,5 +13,16 @@
         "cwd": "${fileDirname}"
       }
     },
+    {
+      "label": "Make perf0",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "${fileBasenameNoExtension}.perf0"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      }
+    },
   ]
 }

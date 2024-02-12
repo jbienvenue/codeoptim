@@ -1,9 +1,10 @@
 #include "measure.h"
-const int MAXID = 2;
+const int MAXID = 4;
 
 void exp(int idCode, int n, int* T, int* U){
   switch(idCode){
     case 0:
+      // double loop with condition in second
       for(int j=0; j<100; j++){
         for(int i=0; i<n; i++){
           if(j<50)
@@ -14,6 +15,7 @@ void exp(int idCode, int n, int* T, int* U){
       }
       break;
     case 1:
+      // pass condition in first loop
       for(int j=0; j<100; j++){
         if(j<50){
           for(int i=0; i<n; i++){
@@ -24,6 +26,29 @@ void exp(int idCode, int n, int* T, int* U){
             U[i] += 2;
           }
         }
+      }
+      break;
+    case 2:
+      //separate into 2 double loop; no condition
+      int j;
+      for(j=0; j<50; j++){
+        for(int i=0; i<n; i++){
+          T[i] += 1;
+        }
+      }
+      for(; j<100; j++){
+        for(int i=0; i<n; i++){
+          U[i] += 2;
+        }
+      }
+      break;
+    case 3:
+      //cheating : no loop in loop
+      for(int i=0; i<n; i++){
+        T[i] += 50;
+      }
+      for(int i=0; i<n; i++){
+        U[i] += 100;
       }
       break;
     default:

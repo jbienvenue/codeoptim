@@ -5,6 +5,7 @@ const int MAXID = 2;
 void exp(int idCode, int n, int** T){
   switch(idCode){
     case 0:
+      //modify element by element in different list : load full list for modify only one element and pass to the next list
       for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
           T[j][i]++;
@@ -12,6 +13,7 @@ void exp(int idCode, int n, int** T){
       }
       break;
     case 1:
+      //modify element by element in same list, list by list : load full list to modify all list and pass to the next
       for(int j=0; j<n; j++){
         for(int i=0; i<n; i++){
           T[j][i]++;

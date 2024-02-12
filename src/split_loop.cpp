@@ -43,7 +43,7 @@ void exp(int idCode, int n, int* T, int* U){
       }
       break;
     case 3:
-      //cheating : no loop in loop
+      //cheating : no double loop
       for(int i=0; i<n; i++){
         T[i] += 50;
       }

@@ -4,7 +4,7 @@ PERF = $(SRC:.cpp=.perf)
 .PRECIOUS: .exe .perf
 
 all:
-	$(PERF)
+	@make $(PERF)
 
 force:
 

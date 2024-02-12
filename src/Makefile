@@ -1,7 +1,7 @@
 SRC = $(wildcard *.cpp)
 PERF = $(SRC:.cpp=.perf)
 
-.PRECIOUS: %.exe .perf
+.PRECIOUS: %.exe %.exe0 .perf
 
 all:
 	@make $(PERF)

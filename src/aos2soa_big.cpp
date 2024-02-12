@@ -8,11 +8,13 @@ typedef struct{
 void exp(int idCode, int n, point* ps, int** pss){
   switch(idCode){
     case 0:
+      // modify data in struct wich is in list : load all struct
       for(int i=0; i<n; i++){
         ps[i].data[0]++;
       }
       break;
     case 1:
+      // modify data in list wich is in a list : load only the first list
       for(int i=0; i<n; i++){
         pss[0][i]++;
       }

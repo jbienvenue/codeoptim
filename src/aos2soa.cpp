@@ -10,11 +10,13 @@ typedef struct{
 void exp(int idCode, int n, point* ps, int* psx, int* psy, int* psz){
   switch(idCode){
     case 0:
+      //modify data in struct wich is in a list : load all struct to modify only one part
       for(int i=0; i<n; i++){
         ps[i].x++;
       }
       break;
     case 1:
+      // modify data in list : load only the list where we modify one element
       for(int i=0; i<n; i++){
         psx[i]++;
       }

@@ -1,0 +1,17 @@
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Make perf",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "${fileBasenameNoExtension}.perf"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      }
+    },
+  ]
+}

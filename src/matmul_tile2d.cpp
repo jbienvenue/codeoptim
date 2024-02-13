@@ -23,14 +23,14 @@ unsigned long xorshf96(void) {          //period 2^96-1
   return z;
 }
 
-void exp(int id, int n, double* T, double* U, double* V){
+void exp(int id, int n, double* T, double* Ut, double* V){
   switch(id){
     case 0:
       for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
           ADDR(V, n, i, j) = 0;
           for(int k=0; k<n; k++){
-            ADDR(V, n, i, j) += ADDR(T, n, i, k)*ADDR(U, n, k, j);
+            ADDR(V, n, i, j) += ADDR(T, n, i, k)*ADDR(Ut, n, j, k);
           }
         }
       }
@@ -44,15 +44,18 @@ void exp(int id, int n, double* T, double* U, double* V){
         //n is multiplyed by 8, because sizeof(double) == 8
         //so b = L3/(4*n*8) = L3/(32n) = L3/(n<<5)
         int blockSize = L3Space/(n<<5);
-        while(blockSize&(blockSize-1))blockSize >>= 1;
-        while(n%blockSize)blockSize >>= 1;
+
+        //we want that blockSize is a power of 2 and divide n
+        while(blockSize&(blockSize-1))blockSize--;//blockSize is a power of 2
+        while(n%blockSize)blockSize >>= 1;//blockSize divide n
+
         for(int iBlock=0; iBlock<n; iBlock += blockSize){
           for(int jBlock=0; jBlock<n; jBlock += blockSize){
             for(int i=0; i<blockSize; i++){
               for(int j=0; j<blockSize; j++){
                 ADDR(V, n, iBlock|i, iBlock|j) = 0;
                 for(int k=0; k<n; k++){
-                  ADDR(V, n, iBlock|i, iBlock|j) += ADDR(T, n, iBlock|i, k)*ADDR(U, n, k, iBlock|j);
+                  ADDR(V, n, iBlock|i, iBlock|j) += ADDR(T, n, iBlock|i, k)*ADDR(Ut, n, iBlock|j, k);
                 }
               }
             }
@@ -63,13 +66,15 @@ void exp(int id, int n, double* T, double* U, double* V){
     case 2:{
         //traverse the list block by block
         int blockSize = L3Space/(n<<5);
-        while(n%blockSize)blockSize--;
+
+        //we want that blockSize divide n
+        while(n%blockSize)blockSize--;//blokSize divide n
         for(int iBlock=0; iBlock<n; iBlock += blockSize){
           for(int jBlock=0; jBlock<n; jBlock += blockSize){
             for(int i=0; i<blockSize; i++){
               for(int j=0; j<blockSize; j++){
                 for(int k=0; k<n; k++){
-                  ADDR(V, n, iBlock+i, iBlock+j) += ADDR(T, n, iBlock+i, k)*ADDR(U, n, k, iBlock+j);
+                  ADDR(V, n, iBlock+i, iBlock+j) += ADDR(T, n, iBlock+i, k)*ADDR(Ut, n, iBlock+j, k);
                 }
               }
             }

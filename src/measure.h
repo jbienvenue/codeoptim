@@ -41,16 +41,3 @@ void report(){
   }
   free(exec_time_sum);
 }
-
-void calloc2d(double*** M, int x, int y){
-  *M = (double**)calloc(x, sizeof(double*));
-  for(int i=0; i<x; i++){
-    (*M)[i] = (double*)calloc(y, sizeof(double));
-  }
-}
-void free2d(double** M, int x){
-  for(int i=0; i<x; i++){
-    free(M[i]);
-  }
-  free(M);
-}

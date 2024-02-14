@@ -41,8 +41,9 @@ void exp(int id, int n){
       printf("invalid id\n");
   }
 }
-int main(){
-  const int n = 1000000000;
+int main(int argc, char* argv[]){
+  int _ = 1000000000;
+  const int n = init(argc, argv, _);
   const int repeat = 5;
   //record
   init_tm(repeat, MAXID);

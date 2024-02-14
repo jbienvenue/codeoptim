@@ -28,8 +28,9 @@ void exp(int id, int n, double* T){
   }
   total += s;
 }
-int main(){
-  const int n = 100000000;
+int main(int argc, char* argv[]){
+  int _ = 100000000;
+  const int n = init(argc, argv, _);
   const int repeat = 10;
   //alloc
   double* T = (double*)calloc(n, sizeof(double));

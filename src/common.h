@@ -13,10 +13,14 @@ int nbIDCode;
 
 int L3Space=4194304;
 
-void init(int argc, char* argv[]){
+int init(int argc, char* argv[], int n){
   if(argc>1){
     L3Space = atoi(argv[1]);
+    if(argc > 2){
+      return atoi(argv[2]);
+    }
   }
+  return n;
 }
 
 void start(){

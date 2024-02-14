@@ -24,8 +24,9 @@ void exp(int idCode, int n, point* ps, int** pss){
   }
 }
 
-int main(){
-  const int n = 10000000;
+int main(int argc, char* argv[]){
+  int _ = 10000000;
+  const int n = init(argc, argv, _);
   const int repeat = 10;
   //alloc
   point* ps = (point*)calloc(n, sizeof(point));

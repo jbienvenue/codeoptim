@@ -91,8 +91,8 @@ void full(double* M, int n){
   }
 }
 int main(int argc, char* argv[]){
-  init(argc, argv);
-  const int n = 1000;
+  int _ = 1000;
+  const int n = init(argc, argv, _);
   const int repeat = 5;
   //alloc
   double* T = (double*)calloc2d(n, n, sizeof(double));

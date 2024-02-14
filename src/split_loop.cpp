@@ -64,8 +64,9 @@ void exp(int idCode, int n, int* T, int* U){
   }
 }
 
-int main(){
-  const int n = 10000000;
+int main(int argc, char* argv[]){
+  int _ = 10000000;
+  const int n = init(argc, argv, _);
   const int repeat = 2;
   //alloc
   int* T = (int*)calloc(n, sizeof(int));

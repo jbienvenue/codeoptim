@@ -94,7 +94,7 @@ void full(double* M, int n){
   }
 }
 int main(){
-  const int n = 2000;
+  const int n = 1000;
   const int repeat = 5;
   //alloc
   double* T = (double*)calloc2d(n, n, sizeof(double));

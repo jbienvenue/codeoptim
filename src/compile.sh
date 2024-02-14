@@ -6,7 +6,7 @@ ARG=$1
 OUT=$2
 STR="//compile: "
 NBSTR=${#STR}
-RES=$(grep -P "^//compile: " $ARG | tail -c "+$STR")
+RES=$(grep -P "^$STR" $ARG | tail -c "+$NBSTR")
 if [ "$RES" == "" ]; then
   COM="gcc -O3"
 else

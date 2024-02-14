@@ -32,7 +32,7 @@ void exp(int id, int n, double* T, double* U){
   }
 }
 int main(int argc, char* argv[]){
-  init(argc, argv);
+  init(argc, argv, 0);
   const int n = L3Space*3/(4*sizeof(double));
   const int repeat = 10;
   //alloc

@@ -1,21 +1,28 @@
 SRC = $(wildcard *.cpp)
-PERF = $(SRC:.cpp=.perf)
+BASE = $(SRC:.cpp=)
+PERF = $(addsuffix .perf,$(BASE))
+ALL = $(addsuffix .perfs,$(BASE))
 
-.PRECIOUS: %.exe %.exe0 .perf
+.PRECIOUS: %.exe %.exe0 %.exe3 %.perf %.perf0 %.perf3
 
-all:
-	@make $(PERF)
+all: $(ALL)
+
+
+perf: $(PERF)
 
 force:
 
-%.perf: %.exe force
+#%.perfs: $(patsubst x%, $($@:.perfs=)%,x.perf0 x.perf3 x.perf)
+%.perfs: %.perf0 %.perf3 %.perf
+	@echo ""
+
+%.perf3: %.exe3 force
 	./$< > $@
 	@echo "Perf for $*"
 	@cat $@
 
-%.exe: %.cpp
+%.exe3: %.cpp
 	gcc -O3 $< -o $@ -lstdc++
-
 
 %.perf0: %.exe0 force
 	./$< > $@
@@ -24,4 +31,12 @@ force:
 
 %.exe0: %.cpp
 	gcc -O0 $< -o $@ -lstdc++
+
+%.perf: %.exe force
+	./$< > $@
+	@echo "Perf for $*"
+	@cat $@
+
+%.exe: %.cpp
+	@bash compile.sh $< $@
 

@@ -17,7 +17,7 @@ force:
 	@echo ""
 
 %.perf3: %.exe3 force
-	./$< > $@
+	./$< $(@getconf LEVEL3_CACHE_SIZE) > $@
 	@echo "Perf for $*"
 	@cat $@
 
@@ -25,7 +25,7 @@ force:
 	gcc -O3 $< -o $@ -lstdc++
 
 %.perf0: %.exe0 force
-	./$< > $@
+	./$< $(@getconf LEVEL3_CACHE_SIZE) > $@
 	@echo "Perf for $*"
 	@cat $@
 
@@ -33,7 +33,7 @@ force:
 	gcc -O0 $< -o $@ -lstdc++
 
 %.perf: %.exe force
-	./$< > $@
+	./$< $(@getconf LEVEL3_CACHE_SIZE) > $@
 	@echo "Perf for $*"
 	@cat $@
 

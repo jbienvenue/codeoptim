@@ -7,6 +7,8 @@ void __attribute__ ((noinline)) f(int i, int* x){
   (*x) += i;
 }
 
+int total = 0;
+
 void exp(int id, int n){
   switch(id){
     case 0:{
@@ -15,6 +17,7 @@ void exp(int id, int n){
         for(int i=0; i<n; i++){
           f(i, &x);
         }
+        total += x;
       }
       break;
     case 1:{
@@ -23,6 +26,7 @@ void exp(int id, int n){
         for(int i=0; i<n; i++){
           x += i;
         }
+        total += x;
       }
       break;
     case 2:{
@@ -31,6 +35,7 @@ void exp(int id, int n){
       for(int i=0; i<n; i++){
         *p += i;
       }
+      total += x;
       break;
     }
     default:
@@ -50,4 +55,5 @@ int main(){
     }
   }
   report();
+  printf("\tresult :%d\n", total);
 }

@@ -1,5 +1,8 @@
+*
+!*/
+!*.*
 *.perf
-*.perf0
+*.perf*
 *.exe
-*.exe0
+*.exe*
 *.out

@@ -1,11 +1,8 @@
 //compile : gcc -O0
-#include "measure.h"
+#include "common.h"
 #include "matrix2d.h"
 
 const int MAXID = 3;
-const int L3Space = 4096000;
-
-using namespace std;
 
 static unsigned long x=123456789, y=362436069, z=521288629;
 
@@ -93,7 +90,8 @@ void full(double* M, int n){
     }
   }
 }
-int main(){
+int main(int argc, char* argv[]){
+  init(argc, argv);
   const int n = 1000;
   const int repeat = 5;
   //alloc
@@ -111,7 +109,7 @@ int main(){
   while(n%blockSize2)blockSize2--;
   printf("start recording\n");
   printf("Block Size = %d %d\n", blockSize, blockSize2);
-  init(repeat, MAXID);
+  init_tm(repeat, MAXID);
   for(int idRun = 0; idRun<=repeat; idRun++){
     for(int idCode=MAXID-1; idCode>=0; idCode--){
       start();

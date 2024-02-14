@@ -1,4 +1,4 @@
-#include "measure.h"
+#include "common.h"
 
 const int MAXID = 2;
 
@@ -42,7 +42,7 @@ int main(){
   double* T = (double*)calloc(n, sizeof(double));
   double* U = (double*)calloc(n/64, sizeof(double));
   //record
-  init(repeat, MAXID);
+  init_tm(repeat, MAXID);
   for(int idRun = 0; idRun<=repeat; idRun++){
     for(int idCode=0; idCode<MAXID; idCode++){
       start();

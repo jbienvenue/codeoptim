@@ -1,7 +1,6 @@
-#include "measure.h"
+#include "common.h"
 
 const int MAXID = 2;
-using namespace std;
 int total=0;
 
 void exp(int id, int n, double* T){
@@ -35,7 +34,7 @@ int main(){
   //alloc
   double* T = (double*)calloc(n, sizeof(double));
   //record
-  init(repeat, MAXID);
+  init_tm(repeat, MAXID);
   for(int idRun = 0; idRun<=repeat; idRun++){
     for(int idCode=0; idCode<MAXID; idCode++){
       start();

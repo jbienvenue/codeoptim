@@ -1,7 +1,6 @@
-#include "measure.h"
+#include "common.h"
 
 const int MAXID = 3;
-using namespace std;
 
 void __attribute__ ((noinline)) f(int i, int* x){
   (*x) += i;
@@ -46,7 +45,7 @@ int main(){
   const int n = 1000000000;
   const int repeat = 5;
   //record
-  init(repeat, MAXID);
+  init_tm(repeat, MAXID);
   for(int idRun = 0; idRun<=repeat; idRun++){
     for(int idCode=0; idCode<MAXID; idCode++){
       start();

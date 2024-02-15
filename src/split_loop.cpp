@@ -1,4 +1,5 @@
 //compile: gcc -O0
+//options: -lm
 #include "common.h"
 #include <cmath>
 const int MAXID = 2;

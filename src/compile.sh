@@ -12,4 +12,7 @@ if [ "$RES" == "" ]; then
 else
   COM="$RES"
 fi
-$COM $ARG -o $OUT -lstdc++
+STR2="//options: "
+NBSTR2=${#STR2}
+OPT=$(grep -P "^$STR2" $ARG | tail -c "+$NBSTR2")
+$COM $ARG -o $OUT -lstdc++ $OPT

@@ -70,6 +70,7 @@ void exp(int id, int n, double* T, double* Ut, double* V){
           for(int jBlock=0; jBlock<n; jBlock += blockSize){
             for(int i=0; i<blockSize; i++){
               for(int j=0; j<blockSize; j++){
+                ADDR(V, n, iBlock+i, iBlock+j) = 0;
                 for(int k=0; k<n; k++){
                   ADDR(V, n, iBlock+i, iBlock+j) += ADDR(T, n, iBlock+i, k)*ADDR(Ut, n, iBlock+j, k);
                 }

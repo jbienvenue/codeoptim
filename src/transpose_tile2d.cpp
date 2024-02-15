@@ -2,7 +2,7 @@
 #include "common.h"
 #include "matrix2d.h"
 
-const int MAXID = 4;
+const int MAXID = 5;
 
 static unsigned long x=123456789, y=362436069, z=521288629;
 
@@ -25,10 +25,18 @@ void exp(int id, int n, double* T, double* V){
     case 0:
       for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-          ADDR(V, n, i, j) += ADDR(T, n, j, i);
+          ADDR(V, n, j, i) = ADDR(T, n, i, j);
         }
       }
-    case 1:{
+      break;
+    case 1:
+      for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+          ADDR(V, n, i, j) = ADDR(T, n, j, i);
+        }
+      }
+      break;
+    case 2:{
         //traverse the list block by block
         //2n*b should be in the L3 cache
         //we take fator 2 of marge
@@ -54,7 +62,7 @@ void exp(int id, int n, double* T, double* V){
         }
       }
       break;
-    case 2:{
+    case 3:{
         //traverse the list block by block
         int blockSize = L3Space/(n<<5);
 
@@ -64,14 +72,14 @@ void exp(int id, int n, double* T, double* V){
           for(int jBlock=0; jBlock<n; jBlock += blockSize){
             for(int i=0; i<blockSize; i++){
               for(int j=0; j<blockSize; j++){
-                ADDR(V, n, iBlock|i, jBlock|j) = ADDR(T, n, jBlock|j, iBlock|i);
+                ADDR(V, n, iBlock+i, jBlock+j) = ADDR(T, n, jBlock+j, iBlock+i);
               }
             }
           }
         }
       }
       break;
-    case 3:{
+    case 4:{
         int blockSize = L3Space/(n<<5);
 
         //we want that blockSize is a power of 2 and divide n

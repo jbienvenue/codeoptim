@@ -2,7 +2,7 @@
 
 const int MAXID = 2;
 
-void exp(int id, int n, double* T, double* U){
+void exp(int id, int n, double* T){
   switch(id){
     case 0:
       //change element all 64 element
@@ -17,6 +17,7 @@ void exp(int id, int n, double* T, double* U){
         //modify element in second,
         //reload second in the first list
         int n64 = n/64;
+        double* U = (double*)calloc(n64, sizeof(double));
         for(int i=0; i<n64; i++){
           U[i] = T[i<<6];
         }
@@ -28,6 +29,7 @@ void exp(int id, int n, double* T, double* U){
         for(int i=0; i<n64; i++){
           T[i<<6] = U[i];
         }
+        free(U);
       }
       break;
     default:
@@ -41,13 +43,12 @@ int main(int argc, char* argv[]){
   const int repeat = 3;
   //alloc
   double* T = (double*)calloc(n, sizeof(double));
-  double* U = (double*)calloc(n/64, sizeof(double));
   //record
   init_tm(repeat, MAXID);
   for(int idRun = 0; idRun<=repeat; idRun++){
     for(int idCode=0; idCode<MAXID; idCode++){
       start();
-      exp(idCode, n, T, U);
+      exp(idCode, n, T);
       stop(idCode, idRun);
     }
   }

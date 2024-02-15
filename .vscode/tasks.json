@@ -29,7 +29,6 @@
       "type": "shell",
       "command": "pdflatex",
       "args": [
-        "-interaction=nonstopmode",
         "${fileBasenameNoExtension}"
       ],
       "options": {

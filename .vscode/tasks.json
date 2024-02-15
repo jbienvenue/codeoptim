@@ -24,5 +24,17 @@
         "cwd": "${fileDirname}"
       }
     },
+    {
+      "label": "Pdflatex",
+      "type": "shell",
+      "command": "pdflatex",
+      "args": [
+        "-interaction=nonstopmode",
+        "${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      }
+    },
   ]
 }
